@@ -18,11 +18,12 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from pmax.views import home
+from pmax.views import home,signup
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("",home,name="home")
+    path("",home,name="home"),
+    path("signup/",signup, name="signup")
 ]
 
 urlpatterns = urlpatterns+static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)

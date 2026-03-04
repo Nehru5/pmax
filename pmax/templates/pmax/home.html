@@ -33,6 +33,7 @@
       align-items: center;
       justify-content: space-evenly;
       flex-direction: column;
+      margin-bottom: 30px;
     }
 
     .hero-section button{
@@ -42,6 +43,23 @@
       border: none;
       border-radius: 10px;
       padding: 10px;
+    }
+
+    .movies{
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      margin-top: 30px;
+    }
+
+    .movies img{
+      height: 200px;
+      box-shadow: 0 0 15px black;
+      border-radius: 10px;
+      transition: all 0.6s;
+    }
+    .movies img:hover{
+      transform: scale(1.06);
     }
   </style>
 </head>
@@ -61,6 +79,21 @@
     <h1>🍿 Welcome to Pmax 🍿</h1>
     <h2>Browse Latest Movies 🎥 </h2>
     <button>Browse</button>
+  </div>
+
+  <center><h1 style="padding: 10px; background-color: green;color: white;">Latest Movies</h1></center>
+
+  <div class="movies">
+    <img src="https://images.justwatch.com/poster/340126450/s718/dhurandhar-2025.jpg" alt="">
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/14/Tom_%26_Jerry_%28Official_2021_Film_Poster%29.png/250px-Tom_%26_Jerry_%28Official_2021_Film_Poster%29.png" alt="">
+    <img src="https://www.adkem.jp/wp/wp-content/uploads/2023/01/2009%E3%82%AA%E3%82%BF%E3%82%B1%E3%83%99%EF%BC%81%E3%82%AB%E3%82%B9%E3%82%AB%E3%83%99%E9%87%8E%E7%94%9F%E7%8E%8B%E5%9B%BD.jpg" alt="">
+  </div>
+
+
+  <div class="movies">
+    <img src="https://images.justwatch.com/poster/340126450/s718/dhurandhar-2025.jpg" alt="">
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/14/Tom_%26_Jerry_%28Official_2021_Film_Poster%29.png/250px-Tom_%26_Jerry_%28Official_2021_Film_Poster%29.png" alt="">
+    <img src="https://www.adkem.jp/wp/wp-content/uploads/2023/01/2009%E3%82%AA%E3%82%BF%E3%82%B1%E3%83%99%EF%BC%81%E3%82%AB%E3%82%B9%E3%82%AB%E3%83%99%E9%87%8E%E7%94%9F%E7%8E%8B%E5%9B%BD.jpg" alt="">
   </div>
 </body>
 </html>
