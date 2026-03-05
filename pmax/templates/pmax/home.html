@@ -61,6 +61,13 @@
     .movies img:hover{
       transform: scale(1.06);
     }
+    a{
+      text-decoration: none;
+      color: white;
+    }
+    a:hover{
+      color: orange;
+    }
   </style>
 </head>
 <body>
@@ -70,8 +77,8 @@
     </div>
 
     <div class="right">
-      <h2>Signup</h2>
-      <h2>Login</h2>
+      <a href="{% url 'signup' %}"><h2>Signup</h2></a>
+      <a href="{% url 'login' %}"><h2>Login</h2></a>
     </div>
   </div>
 

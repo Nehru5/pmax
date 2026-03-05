@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container{
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+    }
+    .cards{
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+     flex-direction: column; 
+     box-shadow: 0 0 15px black;
+     padding: 20px;
+     border-radius: 10px;
+    }
+   button{
+      background-color: green;
+      color: white;
+      font-weight: bolder;
+      border: none;
+      border-radius: 10px;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <center><h1>Movies List</h1></center>
+
+ <div class="container">
+   {% for i in movies %}
+  <div class="cards">
+    <img height="200px" src="{{i.image.url}}" alt="">
+  <h2>Title: {{i.name}}</h2>
+  <h2>Duration: {{i.duration}} mins</h2>
+  <button>View</button> <br>
+  </div>
+  {% endfor %}
+ </div>
+</body>
+</html>
