@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from pmax.models import User,Movie
+from pmax.models import User,Movie,Show
 def home(request):
   return render(request,"./pmax/home.html")
 
@@ -42,3 +42,16 @@ def dashboard(request):
   
   movies = Movie.objects.all()
   return render(request, "./pmax/dashboard.html",{"movies":movies})
+
+def logout(request):
+  request.session.flush()
+  return redirect("login")
+
+def movie_detail(request,movie_id):
+  user_id = request.session.get("user-id")
+  if not user_id:
+    return redirect("login")
+  
+  movie = Movie.objects.get(id = movie_id)
+  show = Show.objects.filter(movie = movie)
+  return render(request,"./pmax/movie_detail.html",{"movie":movie,"shows":show})

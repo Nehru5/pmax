@@ -1,25 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(135deg,#000000,#021f02,#003300);
+}
+
+/* Glass container */
+.container{
+  backdrop-filter: blur(15px);
+  background: rgba(0,0,0,0.6);
+  border:1px solid rgba(0,255,0,0.2);
+  box-shadow:0 0 25px rgba(0,255,0,0.25);
+  padding:40px;
+  border-radius:15px;
+  width:320px;
+  text-align:center;
+}
+
+h1{
+  color:#00ff88;
+  margin-bottom:25px;
+}
+
+/* Inputs */
+input{
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+  border:none;
+  outline:none;
+  border-radius:8px;
+  background:rgba(255,255,255,0.08);
+  color:white;
+  border:1px solid rgba(0,255,0,0.2);
+}
+
+/* Glow effect */
+input:focus{
+  border:1px solid #00ff88;
+  box-shadow:0 0 10px #00ff88;
+}
+
+/* Button */
+button{
+  width:100%;
+  padding:10px;
+  margin-top:15px;
+  border:none;
+  border-radius:8px;
+  background:#00ff88;
+  color:black;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#00cc66;
+  box-shadow:0 0 15px #00ff88;
+}
+
+p{
+  margin-top:15px;
+  color:#ff4d4d;
+  font-weight:bold;
+}
+
+</style>
+
 </head>
+
 <body>
-  <center><h1>Login page</h1></center>
-  <center>
-    <form action="" method="post">
-      {% csrf_token %}
 
-      <input type="text" placeholder="Enter username" required name="username"> <br>
+<div class="container">
 
-      <input type="text" placeholder="Enter password" required name="password"> <br>
+<h1>Login Page</h1>
 
-      <button>Login</button>
-    </form>
-      {% if error %}
-    <p style="color: red; font-weight: bolder;">{{error}}</p>
-      {% endif %}
-  </center>
+<form action="" method="post">
+{% csrf_token %}
+
+<input type="text" placeholder="Enter username" required name="username"> <br>
+
+<input type="password" placeholder="Enter password" required name="password"> <br>
+
+<button>Login</button>
+
+</form>
+
+{% if error %}
+<p>{{error}}</p>
+{% endif %}
+
+</div>
+
 </body>
 </html>

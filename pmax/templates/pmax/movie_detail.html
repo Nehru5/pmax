@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Movie</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+  background: linear-gradient(135deg,#000000,#021f02,#003300);
+  color:white;
+  min-height:100vh;
+  padding:30px;
+}
+
+/* Heading */
+h1{
+  color:#00ff88;
+  margin-bottom:20px;
+}
+
+/* Movie section */
+.movie{
+  display:flex;
+  align-items:center;
+  gap:40px;
+  margin-bottom:30px;
+  flex-wrap:wrap;
+}
+
+/* Movie image */
+.movie img{
+  height:250px;
+  border-radius:12px;
+  box-shadow:0 0 15px rgba(0,255,0,0.4);
+}
+
+/* Show cards container */
+.shows{
+  display:flex;
+  flex-wrap:wrap;
+  gap:25px;
+}
+
+/* Glass card */
+.card{
+  backdrop-filter: blur(10px);
+  background: rgba(0,0,0,0.6);
+  border:1px solid rgba(0,255,0,0.2);
+  box-shadow:0 0 20px rgba(0,255,0,0.25);
+  padding:20px;
+  border-radius:15px;
+  width:260px;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform: translateY(-6px);
+  box-shadow:0 0 20px #00ff88;
+}
+
+/* Text */
+.card h2{
+  font-size:16px;
+  margin:5px 0;
+}
+
+/* Button */
+button{
+  margin-top:10px;
+  padding:8px 15px;
+  border:none;
+  border-radius:8px;
+  background:#00ff88;
+  color:black;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#00cc66;
+  box-shadow:0 0 10px #00ff88;
+}
+
+/* Sold out button */
+.sold{
+  background:red;
+  color:white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<center><h1>Book Now</h1></center>
+
+<div class="movie">
+
+<img src="{{movie.image.url}}" alt="">
+
+<div>
+<h2>Title : {{movie.name}}</h2>
+<h2>Language : {{movie.language}}</h2>
+<h2>Duration : {{movie.duration}} mins</h2>
+</div>
+
+</div>
+
+<hr>
+
+<h1>Available Shows</h1>
+
+<div class="shows">
+
+{% for i in shows %}
+
+<div class="card">
+
+<h2>Theatre: {{i.theatre.name}}</h2>
+<h2>Show Time: {{i.show_time}}</h2>
+<h2>Price: ₹{{i.price}}</h2>
+<h2>Available Seats: {{i.available_seats}}</h2>
+
+{% if i.available_seats > 0 %}
+<button>Book Now</button>
+{% else %}
+<button class="sold">Sold Out</button>
+{% endif %}
+
+</div>
+
+{% empty %}
+<h2>No shows available</h2>
+{% endfor %}
+
+</div>
+
+</body>
+</html>
