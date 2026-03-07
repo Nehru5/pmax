@@ -20,10 +20,32 @@ body{
   color:white;
 }
 
-/* Heading */
-h1{
+/* Navbar */
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 40px;
+}
+
+.navbar h1{
   color:#00ff88;
-  margin:20px;
+}
+
+.logout-btn{
+  background:red;
+  color:white;
+  border:none;
+  padding:8px 15px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.logout-btn:hover{
+  background:#cc0000;
+  box-shadow:0 0 10px red;
 }
 
 /* Container */
@@ -33,7 +55,7 @@ h1{
   justify-content:center;
   flex-wrap:wrap;
   gap:30px;
-  padding:20px;
+  padding:30px;
 }
 
 /* Glass Cards */
@@ -51,7 +73,7 @@ h1{
 
 /* Card hover animation */
 .cards:hover{
-  transform: translateY(-8px);
+  transform: translateY(-8px) scale(1.02);
   box-shadow:0 0 25px #00ff88;
 }
 
@@ -62,16 +84,21 @@ h1{
   object-fit:cover;
   border-radius:10px;
   margin-bottom:10px;
+  transition:0.3s;
+}
+
+.cards:hover img{
+  transform:scale(1.05);
 }
 
 /* Text */
 .cards h2{
-  font-size:18px;
+  font-size:16px;
   margin:5px 0;
 }
 
 /* Button */
-button{
+.view-btn{
   background:#00ff88;
   color:black;
   font-weight:bold;
@@ -83,7 +110,7 @@ button{
   transition:0.3s;
 }
 
-button:hover{
+.view-btn:hover{
   background:#00cc66;
   box-shadow:0 0 10px #00ff88;
 }
@@ -94,21 +121,34 @@ button:hover{
 
 <body>
 
-<center><h1>Movies List</h1></center>
-<a href="{% url 'logout' %}"><button>Logout</button></a>
+<div class="navbar">
+<h1>🎬 Pmax</h1>
+<a href="{% url 'logout' %}">
+<button class="logout-btn">Logout</button>
+</a>
+</div>
+
 <div class="container">
 
 {% for i in movies %}
+
 <div class="cards">
 
-<img src="{{i.image.url}}" alt="">
+<img src="{{i.image.url}}" alt="movie">
 
 <h2>Title: {{i.name}}</h2>
 <h2>Duration: {{i.duration}} mins</h2>
 
-<a href="{% url 'movie_detail' i.id %}"><button>View</button></a>
+<a href="{% url 'movie_detail' i.id %}">
+<button class="view-btn">View</button>
+</a>
 
 </div>
+
+{% empty %}
+
+<h2>No movies available</h2>
+
 {% endfor %}
 
 </div>
