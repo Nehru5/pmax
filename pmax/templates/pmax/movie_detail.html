@@ -8,197 +8,223 @@
 <style>
 
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family: Arial, Helvetica, sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: Arial, Helvetica, sans-serif;
 }
 
 body{
-  background: linear-gradient(135deg,#000000,#021f02,#003300);
-  color:white;
-  min-height:100vh;
+background: radial-gradient(circle at top,#330000,#000000 60%);
+color:white;
+min-height:100vh;
 }
 
-/* Navbar */
+/* NAVBAR */
 
 .navbar{
-  display:flex;
-  align-items:center;
-  gap:20px;
-  padding:15px 30px;
-  border-bottom:1px solid rgba(0,255,0,0.2);
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 40px;
+
+background:linear-gradient(90deg,#000000,#1a0000,#000000);
+
+border-bottom:2px solid red;
+box-shadow:0 0 10px red;
 }
 
 .navbar h1{
-  color:#00ff88;
-  font-size:22px;
+color:#ff2b2b;
+text-shadow:0 0 10px red;
 }
 
 .navbar a{
-  color:#00ff88;
-  text-decoration:none;
-  font-weight:bold;
+color:#ff4d4d;
+text-decoration:none;
+font-weight:bold;
 }
 
-.navbar a:hover{
-  text-decoration:underline;
-}
-
-/* Main container */
+/* MAIN */
 
 .container{
-  padding:30px;
+padding:40px;
 }
 
-/* Movie section */
+/* MOVIE TOP SECTION */
 
-.movie{
-  display:flex;
-  align-items:center;
-  gap:40px;
-  margin-bottom:30px;
-  flex-wrap:wrap;
+.movie-top{
+display:grid;
+grid-template-columns:250px 1fr 350px;
+gap:40px;
+margin-bottom:40px;
+align-items:start;
 }
 
-/* Movie image */
+/* POSTER */
 
-.movie img{
-  height:250px;
-  border-radius:12px;
-  box-shadow:0 0 15px rgba(0,255,0,0.4);
+.poster img{
+width:100%;
+border-radius:15px;
+box-shadow:0 0 20px red;
 }
 
-/* Show cards */
+/* DETAILS */
 
-.shows{
-  display:flex;
-  flex-wrap:wrap;
-  gap:25px;
+.details{
+backdrop-filter:blur(10px);
+background:rgba(0,0,0,0.7);
+border:1px solid rgba(255,0,0,0.3);
+padding:25px;
+border-radius:15px;
 }
 
-/* Glass card */
-
-.card{
-  backdrop-filter: blur(10px);
-  background: rgba(0,0,0,0.6);
-  border:1px solid rgba(0,255,0,0.2);
-  box-shadow:0 0 20px rgba(0,255,0,0.25);
-  padding:20px;
-  border-radius:15px;
-  width:260px;
-  transition:0.3s;
+.details h2{
+margin-bottom:10px;
+color:#ff9999;
 }
 
-.card:hover{
-  transform: translateY(-6px);
-  box-shadow:0 0 20px #00ff88;
+/* REVIEW PANEL */
+
+.review-panel{
+backdrop-filter:blur(10px);
+background:rgba(0,0,0,0.7);
+border:1px solid rgba(255,0,0,0.3);
+padding:20px;
+border-radius:15px;
+max-height:300px;
+overflow:auto;
 }
 
-/* Card text */
-
-.card h2{
-  font-size:16px;
-  margin:5px 0;
+.review-panel h3{
+color:#ff4d4d;
+margin-bottom:10px;
 }
-
-/* Buttons */
-
-button{
-  margin-top:10px;
-  padding:8px 15px;
-  border:none;
-  border-radius:8px;
-  background:#00ff88;
-  color:black;
-  font-weight:bold;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-button:hover{
-  background:#00cc66;
-  box-shadow:0 0 10px #00ff88;
-}
-
-/* Sold out button */
-
-.sold{
-  background:red;
-  color:white;
-}
-
-/* Section headings */
-
-.section-title{
-  color:#00ff88;
-  margin:30px 0 15px 0;
-}
-
-/* Review Section */
 
 .review{
-  backdrop-filter: blur(10px);
-  background: rgba(0,0,0,0.6);
-  border:1px solid rgba(0,255,0,0.2);
-  box-shadow:0 0 15px rgba(0,255,0,0.25);
-  padding:15px;
-  border-radius:12px;
-  margin-bottom:15px;
-  max-width:500px;
+margin-bottom:10px;
+padding-bottom:10px;
+border-bottom:1px solid rgba(255,0,0,0.2);
 }
 
 .review strong{
-  color:#00ff88;
-}
-
-.review .stars{
-  color:gold;
-  margin-left:5px;
+color:#ff6666;
 }
 
 .review p{
-  margin-top:5px;
-  color:#ddd;
+color:#ccc;
+font-size:14px;
 }
 
-/* Review Form */
+/* SHOW SECTION */
+
+.section-title{
+margin:40px 0 20px 0;
+color:#ff4d4d;
+}
+
+/* SHOW GRID */
+
+.shows{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:25px;
+}
+
+/* SHOW CARD */
+
+.card{
+
+backdrop-filter:blur(10px);
+
+background:rgba(0,0,0,0.75);
+
+border:1px solid rgba(255,0,0,0.35);
+
+box-shadow:0 0 15px rgba(255,0,0,0.3);
+
+padding:20px;
+
+border-radius:15px;
+
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+box-shadow:0 0 25px red;
+}
+
+.card h2{
+font-size:15px;
+margin:6px 0;
+color:#ffb3b3;
+}
+
+/* BUTTON */
+
+button{
+margin-top:10px;
+padding:8px 15px;
+border:none;
+border-radius:8px;
+background:linear-gradient(45deg,#ff0000,#b30000);
+color:white;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+box-shadow:0 0 12px red;
+}
+
+.sold{
+background:gray;
+}
+
+/* REVIEW FORM */
 
 .review-form{
-  margin-top:30px;
-  backdrop-filter: blur(10px);
-  background: rgba(0,0,0,0.6);
-  border:1px solid rgba(0,255,0,0.2);
-  box-shadow:0 0 20px rgba(0,255,0,0.25);
-  padding:20px;
-  border-radius:15px;
-  max-width:500px;
+
+margin-top:40px;
+
+backdrop-filter:blur(10px);
+
+background:rgba(0,0,0,0.7);
+
+border:1px solid rgba(255,0,0,0.3);
+
+padding:25px;
+
+border-radius:15px;
+
+max-width:600px;
 }
 
 .review-form textarea{
-  width:100%;
-  height:90px;
-  padding:10px;
-  border-radius:8px;
-  border:1px solid rgba(0,255,0,0.3);
-  background:rgba(0,0,0,0.7);
-  color:white;
-  resize:none;
-  margin-bottom:10px;
+width:100%;
+height:100px;
+padding:10px;
+border-radius:8px;
+border:1px solid rgba(255,0,0,0.4);
+background:black;
+color:white;
+margin-bottom:10px;
 }
 
 .review-form select{
-  width:100%;
-  padding:8px;
-  border-radius:8px;
-  border:1px solid rgba(0,255,0,0.3);
-  background:rgba(0,0,0,0.7);
-  color:white;
-  margin-bottom:10px;
+width:100%;
+padding:10px;
+border-radius:8px;
+border:1px solid rgba(255,0,0,0.4);
+background:black;
+color:white;
+margin-bottom:10px;
 }
 
 .review-form button{
-  width:100%;
+width:100%;
 }
 
 </style>
@@ -207,33 +233,57 @@ button:hover{
 
 <body>
 
-<!-- Navbar -->
-
 <div class="navbar">
 
 <h1>🎬 Pmax</h1>
 
-<a style="color: red;" href="{% url 'dashboard' %}">Dashboard</a>
+<a href="{% url 'dashboard' %}">Dashboard</a>
 
 </div>
 
 <div class="container">
 
-<!-- Movie info -->
+<!-- MOVIE HEADER -->
 
-<div class="movie">
+<div class="movie-top">
 
+<div class="poster">
 <img src="{{movie.image.url}}" alt="movie">
+</div>
 
-<div>
+<div class="details">
+
 <h2>Title : {{movie.name}}</h2>
 <h2>Language : {{movie.language}}</h2>
 <h2>Duration : {{movie.duration}} mins</h2>
-</div>
 
 </div>
 
-<!-- Shows -->
+<div class="review-panel">
+
+<h3>User Reviews</h3>
+
+{% for i in reviews %}
+
+<div class="review">
+
+<strong>{{i.user.username}}</strong> ⭐ {{i.rating}}
+
+<p>{{i.comment}}</p>
+
+</div>
+
+{% empty %}
+
+<p>No reviews yet</p>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+<!-- SHOWS -->
 
 <h2 class="section-title">Available Shows</h2>
 
@@ -249,7 +299,7 @@ button:hover{
 <h2>Available Seats: {{i.available_seats}}</h2>
 
 {% if i.available_seats > 0 %}
-<button>Book Now</button>
+<a href="{% url 'book_show' i.id %}"><button>Book Now</button></a>
 {% else %}
 <button class="sold">Sold Out</button>
 {% endif %}
@@ -264,28 +314,7 @@ button:hover{
 
 </div>
 
-<!-- Reviews -->
-
-<h2 class="section-title">User Reviews</h2>
-
-{% for i in reviews %}
-
-<div class="review">
-
-<strong>{{i.user.username}}</strong>
-<span class="stars">⭐ {{i.rating}}</span>
-
-<p>{{i.comment}}</p>
-
-</div>
-
-{% empty %}
-
-<p>No reviews yet</p>
-
-{% endfor %}
-
-<!-- Review Form -->
+<!-- REVIEW FORM -->
 
 <div class="review-form">
 

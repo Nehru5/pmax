@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .seatArea{
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-weight: bolder;
+    }
+    .seatArea div{
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      background-color: yellow;
+      padding: 10px;
+      border: 1px solid black;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h2>{{show.movie.name}} - {{show.theatre.name}}</h2>
+  <h2>Show Time: {{show.show_time}}</h2>
+  <h2>Available seats: {{show.available_seats}}</h2>
+  <h2>Price: {{show.price}}</h2>
+
+  <form action="" method="post">
+    {% csrf_token %}
+
+    <div class="seatArea">
+      {% for seat in seats %}
+        <div id="{{seat}}" class="{{seat}} {% if seat in booked_seats %}booked{% endif %}">
+          {{seat}}
+        </div>
+      {% endfor %}
+    </div>
+
+  </form>
+</body>
+</html>

@@ -19,68 +19,147 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  background: linear-gradient(135deg,#000000,#021f02,#003300);
+
+  background:
+  radial-gradient(circle at top,#330000,#000000 60%);
 }
 
+
 /* Glass container */
+
 .container{
-  backdrop-filter: blur(15px);
-  background: rgba(0,0,0,0.6);
-  border:1px solid rgba(0,255,0,0.2);
-  box-shadow:0 0 25px rgba(0,255,0,0.25);
+
+  backdrop-filter: blur(12px);
+
+  background: rgba(0,0,0,0.75);
+
+  border:1px solid rgba(255,0,0,0.35);
+
+  box-shadow:
+  0 0 20px rgba(255,0,0,0.5),
+  0 0 40px rgba(255,0,0,0.2);
+
   padding:40px;
+
   border-radius:15px;
-  width:320px;
+
+  width:330px;
+
   text-align:center;
 }
 
+
 h1{
-  color:#00ff88;
+
+  color:#ff2b2b;
+
   margin-bottom:25px;
+
+  text-shadow:0 0 10px red;
 }
+
 
 /* Inputs */
+
 input{
+
   width:100%;
-  padding:10px;
+
+  padding:12px;
+
   margin:10px 0;
+
   border:none;
+
   outline:none;
+
   border-radius:8px;
-  background:rgba(255,255,255,0.08);
+
+  background:rgba(255,255,255,0.05);
+
   color:white;
-  border:1px solid rgba(0,255,0,0.2);
-}
 
-/* Glow effect */
-input:focus{
-  border:1px solid #00ff88;
-  box-shadow:0 0 10px #00ff88;
-}
+  border:1px solid rgba(255,0,0,0.35);
 
-/* Button */
-button{
-  width:100%;
-  padding:10px;
-  margin-top:15px;
-  border:none;
-  border-radius:8px;
-  background:#00ff88;
-  color:black;
-  font-weight:bold;
-  cursor:pointer;
   transition:0.3s;
 }
 
-button:hover{
-  background:#00cc66;
-  box-shadow:0 0 15px #00ff88;
+
+/* Glow effect */
+
+input:focus{
+
+  border:1px solid #ff0000;
+
+  box-shadow:
+  0 0 8px red,
+  inset 0 0 5px red;
 }
+
+
+/* Button */
+
+button{
+
+  width:100%;
+
+  padding:12px;
+
+  margin-top:15px;
+
+  border:none;
+
+  border-radius:8px;
+
+  background:linear-gradient(45deg,#ff0000,#b30000);
+
+  color:white;
+
+  font-weight:bold;
+
+  cursor:pointer;
+
+  transition:0.3s;
+
+  letter-spacing:1px;
+}
+
+button:hover{
+
+  background:linear-gradient(45deg,#ff1a1a,#ff0000);
+
+  box-shadow:
+  0 0 12px red,
+  0 0 25px red;
+
+  transform:scale(1.03);
+}
+
+
+/* Error message */
 
 p{
   margin-top:15px;
   color:#ff4d4d;
   font-weight:bold;
+}
+
+
+/* Navigation Links */
+
+.links{
+  margin-top:18px;
+  font-size:14px;
+}
+
+.links a{
+  color:#ff4d4d;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.links a:hover{
+  text-decoration:underline;
 }
 
 </style>
@@ -96,9 +175,9 @@ p{
 <form action="" method="post">
 {% csrf_token %}
 
-<input type="text" placeholder="Enter username" required name="username"> <br>
+<input type="text" placeholder="Enter username" required name="username">
 
-<input type="password" placeholder="Enter password" required name="password"> <br>
+<input type="password" placeholder="Enter password" required name="password">
 
 <button>Login</button>
 
@@ -107,6 +186,18 @@ p{
 {% if error %}
 <p>{{error}}</p>
 {% endif %}
+
+<div class="links">
+
+<p>New user? 
+<a href="{% url 'signup' %}">Create account</a>
+</p>
+
+<p style="margin-top:8px;">
+<a href="{% url 'home' %}">⬅ Back to Home</a>
+</p>
+
+</div>
 
 </div>
 

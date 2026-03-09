@@ -3,75 +3,202 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Pmax</title>
+
   <style>
+
     *{
-      padding: 0;margin: 0;
-    }
-    .nav{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 75px;
-      width: 100%;
-      background-color: black;
-      color: white;
-      margin-bottom: 30px;
-    }
-    .right{
-      display: flex;
-      align-items: center;
-      justify-content: space-evenly;
-      width: 30%;
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
+    body{
+      background: linear-gradient(180deg,#000000,#0f0f0f,#000000);
+      color:white;
+    }
+
+    /* NAVBAR */
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      height:75px;
+      width:100%;
+      padding:0 40px;
+
+      background: linear-gradient(90deg,#000000,#1a0000,#000000);
+      border-bottom:2px solid #ff0000;
+
+      box-shadow:0 0 15px rgba(255,0,0,0.5);
+    }
+
+    .left h2{
+      color:#ff2b2b;
+      letter-spacing:2px;
+      text-shadow:0 0 10px red;
+    }
+
+    .right{
+      display:flex;
+      align-items:center;
+      justify-content:space-evenly;
+      width:30%;
+    }
+
+    a{
+      text-decoration:none;
+      color:white;
+      transition:0.3s;
+    }
+
+    a:hover{
+      color:#ff2b2b;
+      text-shadow:0 0 10px red;
+    }
+
+
+    /* HERO SECTION */
+
     .hero-section{
-      height: 300px;
-      background-color: black;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-evenly;
-      flex-direction: column;
-      margin-bottom: 30px;
+
+      height:320px;
+
+      background:
+      linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.9)),
+      url("https://img.freepik.com/free-photo/view-3d-cup-popcorn-with-cinema-seat_23-2150865973.jpg?w=360");
+
+      background-size:contain;
+      background-position:center;
+      background-repeat:repeat;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+
+      gap:15px;
+      margin-bottom:40px;
+
+      text-align:center;
+    }
+
+    .hero-section h1{
+      font-size:40px;
+      text-shadow:0 0 15px red;
+    }
+
+    .hero-section h2{
+      color:#ff4c4c;
+      font-weight:normal;
     }
 
     .hero-section button{
-      background-color: green;
-      color: white;
-      font-weight: bolder;
-      border: none;
-      border-radius: 10px;
-      padding: 10px;
+
+      background: linear-gradient(45deg,#ff0000,#b30000);
+      color:white;
+
+      font-weight:bold;
+      border:none;
+      border-radius:25px;
+
+      padding:12px 28px;
+
+      cursor:pointer;
+
+      box-shadow:0 0 15px red;
+
+      transition:0.3s;
     }
+
+    .hero-section button:hover{
+
+      transform:scale(1.08);
+
+      box-shadow:
+      0 0 15px red,
+      0 0 30px red;
+
+      background:linear-gradient(45deg,#ff1a1a,#ff0000);
+    }
+
+
+
+    /* MOVIE TITLE */
+
+    center h1{
+
+      padding:12px;
+
+      background:linear-gradient(90deg,#7a0000,#ff0000,#7a0000);
+
+      border-radius:6px;
+
+      width:300px;
+
+      margin-top:10px;
+
+      box-shadow:0 0 15px red;
+    }
+
 
     .movies{
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      margin-top: 30px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-evenly;   /* start middle end spacing */
+
+  flex-wrap:wrap;                 /* responsive */
+
+  gap:40px;
+
+  margin-top:40px;
+
+  margin-bottom:40px;
+}
+
+
+.movies img{
+
+  width:180px;        /* same width */
+  height:260px;       /* same height */
+
+  object-fit:cover;   /* image fits without distortion */
+
+  border-radius:12px;
+
+  box-shadow:
+  0 0 10px black,
+  0 0 20px rgba(255,0,0,0.4);
+
+  transition:all 0.4s;
+}
+
+
+    .movies img:hover{
+
+      transform:scale(1.08);
+
+      box-shadow:
+      0 0 15px red,
+      0 0 35px red;
+
+      cursor:pointer;
     }
 
-    .movies img{
-      height: 200px;
-      box-shadow: 0 0 15px black;
-      border-radius: 10px;
-      transition: all 0.6s;
-    }
-    .movies img:hover{
-      transform: scale(1.06);
-    }
-    a{
-      text-decoration: none;
-      color: white;
-    }
-    a:hover{
-      color: orange;
-    }
   </style>
 </head>
+
+
 <body>
+
+
   <div class="nav">
+
     <div class="left">
       <h2>Pmax</h2>
     </div>
@@ -80,27 +207,60 @@
       <a href="{% url 'signup' %}"><h2>Signup</h2></a>
       <a href="{% url 'login' %}"><h2>Login</h2></a>
     </div>
+
   </div>
+
+
 
   <div class="hero-section">
+
     <h1>🍿 Welcome to Pmax 🍿</h1>
     <h2>Browse Latest Movies 🎥 </h2>
+
     <button>Browse</button>
+
   </div>
 
-  <center><h1 style="padding: 10px; background-color: green;color: white;">Latest Movies</h1></center>
+
+
+  <center>
+    <h1>Latest Movies</h1>
+  </center>
+
+
 
   <div class="movies">
-    <img src="https://images.justwatch.com/poster/340126450/s718/dhurandhar-2025.jpg" alt="">
-    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/14/Tom_%26_Jerry_%28Official_2021_Film_Poster%29.png/250px-Tom_%26_Jerry_%28Official_2021_Film_Poster%29.png" alt="">
-    <img src="https://www.adkem.jp/wp/wp-content/uploads/2023/01/2009%E3%82%AA%E3%82%BF%E3%82%B1%E3%83%99%EF%BC%81%E3%82%AB%E3%82%B9%E3%82%AB%E3%83%99%E9%87%8E%E7%94%9F%E7%8E%8B%E5%9B%BD.jpg" alt="">
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIaeLnC0k01rvnt2mHvGtNlSmsAuO7rxu03w&s" alt="">
+
+    <img src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/jawan-et00330424-1693892482.jpg" alt="">
+
+    <img src="https://urbanasian.com/wp-content/uploads/2024/08/967dc0fe-b2b1-46da-ae36-707d7cf70f5c.jpeg" alt="">
+
   </div>
+
 
 
   <div class="movies">
-    <img src="https://images.justwatch.com/poster/340126450/s718/dhurandhar-2025.jpg" alt="">
-    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/14/Tom_%26_Jerry_%28Official_2021_Film_Poster%29.png/250px-Tom_%26_Jerry_%28Official_2021_Film_Poster%29.png" alt="">
-    <img src="https://www.adkem.jp/wp/wp-content/uploads/2023/01/2009%E3%82%AA%E3%82%BF%E3%82%B1%E3%83%99%EF%BC%81%E3%82%AB%E3%82%B9%E3%82%AB%E3%83%99%E9%87%8E%E7%94%9F%E7%8E%8B%E5%9B%BD.jpg" alt="">
+
+    <img src="https://i.redd.it/vidamuyarchi-fan-made-poster-inspired-by-breakdown-v0-hrc2gay8v4ld1.jpg?width=1500&format=pjpg&auto=webp&s=043f8bdea0ecbb840ff54e937e1d90f53eb6be31" alt="">
+
+    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/d23f41184733377.65571621a3846.jpg" alt="">
+
+    <img src="https://media5.bollywoodhungama.in/wp-content/uploads/2024/07/rajinikanth-coolie_b_1006251001-306x393.jpg" alt="">
+
   </div>
+
+   <div class="movies">
+
+    <img src="https://wallpapercave.com/wp/wp7484657.jpg" alt="">
+
+    <img src="https://i.pinimg.com/736x/17/41/75/174175d4241a541001a06f3e484514f4.jpg" alt="">
+
+    <img src="https://m.media-amazon.com/images/M/MV5BY2JhMTZjZWEtN2NkZi00YzI3LTg5ZDQtYjhjMGI1NzlhNDU2XkEyXkFqcGc@._V1_.jpg" alt="">
+
+  </div>
+
+
 </body>
 </html>
