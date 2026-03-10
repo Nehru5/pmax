@@ -22,6 +22,19 @@
       cursor: pointer;
       border-radius: 5px;
     }
+    /*Selected seats*/
+    .seatArea div.selected{
+      background-color: green;
+      color: white;
+    }
+
+    /*Already Booked seats*/
+    .seatArea div.booked{
+      background-color: red;
+      color: white;
+      cursor: not-allowed;
+    }
+
   </style>
 </head>
 <body>
@@ -35,12 +48,31 @@
 
     <div class="seatArea">
       {% for seat in seats %}
-        <div id="{{seat}}" class="{{seat}} {% if seat in booked_seats %}booked{% endif %}">
+        <div id="{{seat}}" class="{{seat}} {% if seat in booked_seats %}booked{% endif %}" onclick="selectSeat('{{seat}}')">
           {{seat}}
         </div>
       {% endfor %}
     </div>
-
+    <input type="hidden" name="selected_seats" id="selectedSeats"><br>
+    <button>Confirm Booking</button>
+    
   </form>
+
+  <script>
+    let selected=[]
+    function selectSeat(id){
+      let seat = document.getElementById(id)
+      if(seat.classList.contains("booked")) return
+
+      seat.classList.toggle("selected")
+      if(seat.classList.contains("selected")){
+        selected.push(id)
+      }else{
+        selected = selected.filter(s=>s!=id)
+      }
+      document.getElementById("selectedSeats").value=selected.join(",")
+    }
+  </script>
+  
 </body>
 </html>
