@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Booking Success</title>
+
+<style>
+
+body{
+background: radial-gradient(circle at top,#330000,#000000 60%);
+color:white;
+font-family:Arial;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.card{
+
+backdrop-filter:blur(10px);
+
+background:rgba(0,0,0,0.75);
+
+border:1px solid rgba(255,0,0,0.3);
+
+box-shadow:0 0 20px red;
+
+padding:40px;
+
+border-radius:15px;
+
+width:350px;
+
+text-align:center;
+}
+
+h1{
+color:#ff2b2b;
+text-shadow:0 0 10px red;
+margin-bottom:20px;
+}
+
+p{
+margin:10px 0;
+font-size:18px;
+}
+
+span{
+color:#ff9999;
+font-weight:bold;
+}
+
+button{
+
+margin-top:20px;
+
+padding:10px 20px;
+
+border:none;
+
+border-radius:8px;
+
+background:linear-gradient(45deg,#ff0000,#b30000);
+
+color:white;
+
+cursor:pointer;
+
+}
+
+button:hover{
+box-shadow:0 0 12px red;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>🎉 Booking Successful</h1>
+
+<p>Movie: <span>{{show.movie.name}}</span></p>
+
+<p>Theatre: <span>{{show.theatre.name}}</span></p>
+
+<p>Seats Booked: <span>{{seats}}</span></p>
+
+<p>Total Price: <span>₹{{total_price}}</span></p>
+
+<p>Show Time: <span>{{show.show_time}}</span></p>
+
+<a href="{% url 'dashboard' %}">
+<button>Back to Dashboard</button>
+</a>
+
+</div>
+
+</body>
+</html>

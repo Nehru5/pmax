@@ -1,78 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    .seatArea{
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      font-weight: bolder;
-    }
-    .seatArea div{
-      display: flex;
-      align-items: center;
-      justify-content: space-evenly;
-      background-color: yellow;
-      padding: 10px;
-      border: 1px solid black;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    /*Selected seats*/
-    .seatArea div.selected{
-      background-color: green;
-      color: white;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seat Booking</title>
 
-    /*Already Booked seats*/
-    .seatArea div.booked{
-      background-color: red;
-      color: white;
-      cursor: not-allowed;
-    }
+<style>
 
-  </style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+background: radial-gradient(circle at top,#330000,#000000 60%);
+color:white;
+min-height:100vh;
+text-align:center;
+}
+
+/* NAVBAR */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 40px;
+background:linear-gradient(90deg,#000000,#1a0000,#000000);
+border-bottom:2px solid red;
+box-shadow:0 0 10px red;
+}
+
+.navbar h1{
+color:#ff2b2b;
+text-shadow:0 0 10px red;
+}
+
+.navbar a{
+color:#ff4d4d;
+text-decoration:none;
+font-weight:bold;
+}
+
+/* MAIN CONTAINER */
+
+.container{
+padding:40px;
+}
+
+/* SHOW INFO */
+
+.show-info{
+
+backdrop-filter:blur(10px);
+background:rgba(0,0,0,0.7);
+border:1px solid rgba(255,0,0,0.3);
+padding:25px;
+border-radius:15px;
+max-width:500px;
+margin:auto;
+margin-bottom:30px;
+
+box-shadow:0 0 20px rgba(255,0,0,0.2);
+}
+
+.show-info h2{
+margin:8px 0;
+color:#ff9999;
+}
+
+/* SCREEN */
+
+.screen{
+
+width:60%;
+margin:30px auto;
+padding:10px;
+
+background:linear-gradient(90deg,#ccc,#fff,#ccc);
+color:black;
+font-weight:bold;
+
+border-radius:5px;
+
+box-shadow:0 0 15px white;
+
+}
+
+/* SEAT AREA */
+
+.seatArea{
+
+display:grid;
+grid-template-columns:repeat(8,60px);
+justify-content:center;
+
+gap:15px;
+
+margin-top:30px;
+margin-bottom:40px;
+}
+
+/* SEAT */
+
+.seatArea div{
+
+width:60px;
+height:60px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+background:linear-gradient(45deg,#ff0000,#8b0000);
+
+border-radius:8px;
+
+cursor:pointer;
+
+font-weight:bold;
+
+box-shadow:0 0 8px rgba(255,0,0,0.5);
+
+transition:0.3s;
+
+}
+
+/* Hover */
+
+.seatArea div:hover{
+
+transform:scale(1.1);
+
+box-shadow:
+0 0 12px red,
+0 0 20px red;
+
+}
+
+/* Selected Seat */
+
+.seatArea div.selected{
+
+background:#2ecc71;
+
+color:white;
+
+box-shadow:0 0 10px #2ecc71;
+
+}
+
+/* Booked Seat */
+
+.seatArea div.booked{
+
+background:#444;
+
+color:#999;
+
+cursor:not-allowed;
+
+box-shadow:none;
+
+}
+
+/* BUTTON */
+
+button{
+
+padding:12px 30px;
+
+border:none;
+border-radius:8px;
+
+background:linear-gradient(45deg,#ff0000,#b30000);
+
+color:white;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:0.3s;
+
+}
+
+button:hover{
+
+box-shadow:
+0 0 12px red,
+0 0 25px red;
+
+}
+
+/* LEGEND */
+
+.legend{
+
+margin-top:20px;
+
+display:flex;
+justify-content:center;
+gap:30px;
+
+}
+
+.legend span{
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.box{
+width:20px;
+height:20px;
+border-radius:4px;
+}
+
+.available{background:#ff0000;}
+.selectedBox{background:#2ecc71;}
+.bookedBox{background:#444;}
+
+</style>
 </head>
+
 <body>
-  <h2>{{show.movie.name}} - {{show.theatre.name}}</h2>
-  <h2>Show Time: {{show.show_time}}</h2>
-  <h2>Available seats: {{show.available_seats}}</h2>
-  <h2>Price: {{show.price}}</h2>
 
-  <form action="" method="post">
-    {% csrf_token %}
+<div class="navbar">
+<h1>🎬 Pmax</h1>
+<a href="{% url 'dashboard' %}">Dashboard</a>
+</div>
 
-    <div class="seatArea">
-      {% for seat in seats %}
-        <div id="{{seat}}" class="{{seat}} {% if seat in booked_seats %}booked{% endif %}" onclick="selectSeat('{{seat}}')">
-          {{seat}}
-        </div>
-      {% endfor %}
-    </div>
-    <input type="hidden" name="selected_seats" id="selectedSeats"><br>
-    <button>Confirm Booking</button>
-    
-  </form>
+<div class="container">
 
-  <script>
-    let selected=[]
-    function selectSeat(id){
-      let seat = document.getElementById(id)
-      if(seat.classList.contains("booked")) return
+<div class="show-info">
 
-      seat.classList.toggle("selected")
-      if(seat.classList.contains("selected")){
-        selected.push(id)
-      }else{
-        selected = selected.filter(s=>s!=id)
-      }
-      document.getElementById("selectedSeats").value=selected.join(",")
-    }
-  </script>
-  
+<h2>{{show.movie.name}} - {{show.theatre.name}}</h2>
+<h2>Show Time : {{show.show_time}}</h2>
+<h2>Available Seats : {{show.available_seats}}</h2>
+<h2>Price : ₹{{show.price}}</h2>
+
+</div>
+
+<div class="screen">
+SCREEN
+</div>
+
+<form action="" method="post">
+{% csrf_token %}
+
+<div class="seatArea">
+
+{% for seat in seats %}
+
+<div id="{{seat}}" class="{% if seat in booked_seats %}booked{% endif %}" onclick="selectSeat('{{seat}}')">
+{{seat}}
+</div>
+
+{% endfor %}
+
+</div>
+
+<input type="hidden" name="selected_seats" id="selectedSeats">
+
+<button>Confirm Booking</button>
+
+</form>
+
+<div class="legend">
+
+<span><div class="box available"></div> Available</span>
+<span><div class="box selectedBox"></div> Selected</span>
+<span><div class="box bookedBox"></div> Booked</span>
+
+</div>
+
+</div>
+
+<script>
+
+let selected=[]
+
+function selectSeat(id){
+
+let seat=document.getElementById(id)
+
+if(seat.classList.contains("booked")) return
+
+seat.classList.toggle("selected")
+
+if(seat.classList.contains("selected")){
+selected.push(id)
+}
+else{
+selected=selected.filter(s=>s!=id)
+}
+
+document.getElementById("selectedSeats").value=selected.join(",")
+
+}
+
+</script>
+
 </body>
 </html>
