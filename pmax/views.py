@@ -80,53 +80,81 @@ def book_show(request,show_id):
     return redirect("login")
   
   show = Show.objects.get(id = show_id)
-  rows = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
-  
+
+  rows = ["A","B","C","D","E","F","G","H","I","J",
+          "K","L","M","N","O","P","Q","R","S","T",
+          "U","V","W","X","Y","Z"]
+
+  # Get already booked seats first
+  bookings = Booking.objects.filter(show=show)
+  booked_seats = []
+
+  for b in bookings:
+    booked_seats.extend(b.seats.split(","))
+
+  # FIX HERE
+  total_seats = show.available_seats + len(booked_seats)
+
   seats=[]
   seats_per_row = 10
-  total_seats = show.available_seats
   count = 0
   
   for row in rows:
     for num in range(1,seats_per_row+1):
-      if count>=total_seats:
+      if count >= total_seats:
         break
       seats.append(row+str(num))
-      count = count+1
-    if count>=total_seats:
+      count += 1
+    if count >= total_seats:
       break
-  
-  # Available slots
-  bookings = Booking.objects.filter(show=show)
-  booked_seats = []
-  for b in bookings:
-    booked_seats.extend(b.seats.split(","))
-  
+
+
   if request.method=="POST":
     selected_seats = request.POST.get("selected_seats")
     
     if not selected_seats:
-      return render(request,"./pmax/seat_selection.html",{"show":show,"booked_seats":booked_seats,"seats":seats,"error":"Please select atleast one seat"})
+      return render(request,"./pmax/seat_selection.html",
+      {
+        "show":show,
+        "booked_seats":booked_seats,
+        "seats":seats,
+        "error":"Please select atleast one seat"
+      })
+    
     seat_list = selected_seats.split(",")
-    
+
     if len(seat_list) > show.available_seats:
-      return render(request,"./pmax/seat_selection.html",{"show":show,"booked_seats":booked_seats,"seats":seats,"error":"Not enough seats"})
-    
-    total_price = len(seat_list)*show.price
+      return render(request,"./pmax/seat_selection.html",
+      {
+        "show":show,
+        "booked_seats":booked_seats,
+        "seats":seats,
+        "error":"Not enough seats"
+      })
+
+    total_price = len(seat_list) * show.price
     user = User.objects.get(id=user_id)
+
     Booking.objects.create(
       user=user,
-      show = show,
-      seats =selected_seats,
+      show=show,
+      seats=selected_seats,
       total_price=total_price
     )
+
     show.available_seats = show.available_seats - len(seat_list)
     show.save()
+
     return render(request,"./pmax/success.html",
     {
       "show":show,
       "seats":selected_seats,
       "total_price":total_price
     })
-    
-  return render(request,"./pmax/seat_selection.html",{"show":show,"booked_seats":booked_seats,"seats":seats})
+
+  return render(request,"./pmax/seat_selection.html",
+  {
+    "show":show,
+    "booked_seats":booked_seats,
+    "seats":seats
+  })
