@@ -1,34 +1,43 @@
-"""
-URL configuration for movie_project project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from pmax.views import home,signup,login,dashboard,logout,movie_detail,book_show
+
+# ✅ import ALL views (including new one)
+from pmax.views import (
+    home,
+    signup,
+    login,
+    dashboard,
+    logout,
+    movie_detail,
+    book_show,
+    my_bookings,
+    ticket_view,
+    download_ticket,
+    payment_page,
+    confirm_payment
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("",home,name="home"),
-    path("signup/",signup, name="signup"),
-    path("login/",login,name="login"),
-    path("dashboard/",dashboard,name="dashboard"),
-    path("logout/", logout,name="logout"),
-    path("movie_detail/<int:movie_id>/",movie_detail, name="movie_detail"),
-    path("book_show/<int:show_id>/",book_show,name="book_show")
+
+    path("", home, name="home"),
+    path("signup/", signup, name="signup"),
+    path("login/", login, name="login"),
+    path("dashboard/", dashboard, name="dashboard"),
+    path("logout/", logout, name="logout"),
+
+    path("movie_detail/<int:movie_id>/", movie_detail, name="movie_detail"),
+    path("book_show/<int:show_id>/", book_show, name="book_show"),
+
+    # ✅ NEW ROUTE
+    path("my_bookings/", my_bookings, name="my_bookings"),
+    path("ticket/<int:booking_id>/", ticket_view, name="ticket_view"),
+    path("download_ticket/<int:booking_id>/", download_ticket, name="download_ticket"),
+    path("payment/", payment_page, name="payment_page"),
+path("confirm_payment/", confirm_payment, name="confirm_payment"),
 ]
 
-urlpatterns = urlpatterns+static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
+# media files (images)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

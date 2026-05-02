@@ -23,15 +23,17 @@ background:rgba(0,0,0,0.75);
 
 border:1px solid rgba(255,0,0,0.3);
 
-box-shadow:0 0 20px red;
+box-shadow:0 0 25px red;
 
-padding:40px;
+padding:35px;
 
 border-radius:15px;
 
-width:350px;
+width:380px;
 
 text-align:center;
+
+position:relative;
 }
 
 h1{
@@ -41,13 +43,37 @@ margin-bottom:20px;
 }
 
 p{
-margin:10px 0;
-font-size:18px;
+margin:8px 0;
+font-size:17px;
 }
 
 span{
 color:#ff9999;
 font-weight:bold;
+}
+
+.divider{
+margin:15px 0;
+border-top:1px dashed rgba(255,255,255,0.3);
+}
+
+/* Booking ID Badge */
+.booking-id{
+position:absolute;
+top:-12px;
+right:-12px;
+background:#ff0000;
+padding:6px 12px;
+border-radius:10px;
+font-size:12px;
+box-shadow:0 0 10px red;
+}
+
+/* QR Placeholder */
+.qr-box{
+margin-top:15px;
+padding:10px;
+border:1px dashed rgba(255,255,255,0.3);
 }
 
 button{
@@ -80,17 +106,38 @@ box-shadow:0 0 12px red;
 
 <div class="card">
 
+<div class="booking-id">
+ID: {{ booking.id }}
+</div>
+
 <h1>🎉 Booking Successful</h1>
 
-<p>Movie: <span>{{show.movie.name}}</span></p>
+<div class="divider"></div>
 
-<p>Theatre: <span>{{show.theatre.name}}</span></p>
+<p>🎬 Movie: <span>{{show.movie.name}}</span></p>
 
-<p>Seats Booked: <span>{{seats}}</span></p>
+<p>🏢 Theatre: <span>{{show.theatre.name}}</span></p>
 
-<p>Total Price: <span>₹{{total_price}}</span></p>
+<p>📍 Location: <span>{{show.theatre.location}}</span></p>
 
-<p>Show Time: <span>{{show.show_time}}</span></p>
+<p>🎟 Seats: <span>{{seats}}</span></p>
+
+<p>💰 Total: <span>₹{{total_price}}</span></p>
+
+<p>⏰ Show Time: <span>{{show.show_time}}</span></p>
+
+<p>📅 Booked At: <span>{{ booking.booking_time }}</span></p>
+
+<div class="divider"></div>
+
+<!-- QR Code will come here -->
+<div class="qr-box">
+  <p>📱 Scan QR</p>
+  <img src="data:image/png;base64,{{ qr_code }}" width="150">
+</div>
+<a href="{% url 'download_ticket' booking.id %}">
+  <button>Download Ticket PDF</button>
+</a>
 
 <a href="{% url 'dashboard' %}">
 <button>Back to Dashboard</button>

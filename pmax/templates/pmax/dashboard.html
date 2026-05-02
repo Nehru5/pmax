@@ -216,9 +216,15 @@ body{
 
 <h1>🎬 Pmax</h1>
 
-<a href="{% url 'logout' %}">
-<button class="logout-btn">Logout</button>
-</a>
+<div>
+  <a href="{% url 'my_bookings' %}">
+    <button class="logout-btn">My Bookings</button>
+  </a>
+
+  <a href="{% url 'logout' %}">
+    <button class="logout-btn">Logout</button>
+  </a>
+</div>
 
 </div>
 
